@@ -1,5 +1,17 @@
 //Start by isBuring - return true
 public class TaylorsAI {
+	private static String lastGuess = "A0";
+	public static void lastGuess(String a){
+		lastGuess = a;
+	}
+	public static int getLastGuessLetter(){
+	int a = (int)lastGuess.charAt(0);
+	return a - 'A';
+	}
+	public static int getLastGuessNumber(){
+		return lastGuess.charAt(1);
+	}
+	
 	public static String aIGuess(char[][] guesses) {
 		int row, col;
 		String guess;
@@ -12,19 +24,27 @@ public class TaylorsAI {
 						// Makes sure it wont go out of index
 						if (col < 9 && guesses[row][col + 1] == '.') {
 							a = (char) ((int) 'A' + row);
-							return guess = a + Integer.toString(col + 2);
+							guess = a + Integer.toString(col + 2);
+							TaylorsAI.lastGuess(guess);
+							return guess;
 						}
 						if (col > 0 && guesses[row][col - 1] == '.') {
 							a = (char) ((int) 'A' + row);
-							return guess = a + Integer.toString(col);
+							guess = a + Integer.toString(col);
+							TaylorsAI.lastGuess(guess);
+							return guess;
 						}
 						if (row < guesses.length - 1 && guesses[row + 1][col] == '.') {
 							a = (char) ((int) 'A' + row + 1);
-							return guess = a + Integer.toString(col + 1);
+							 guess = a + Integer.toString(col + 1);
+							 TaylorsAI.lastGuess(guess);
+								return guess;
 						}
 						if (row > 0 && guesses[row - 1][col] == '.') {
 							a = (char) ((int) 'A' + row - 1);
-							return guess = a + Integer.toString(col + 1);
+							 guess = a + Integer.toString(col + 1);
+							 TaylorsAI.lastGuess(guess);
+								return guess;
 						}
 
 					}
@@ -33,16 +53,17 @@ public class TaylorsAI {
 		}
 		int parity = size(guesses);
 		int colCount = 0;
-		// figure out how to save last guess
-		for (row = 0; row < guesses.length; row+=4)
+		for (row = TaylorsAI.getLastGuessLetter(); row < guesses.length; row+=parity)
 		{
-			for (col = 0; col < guesses.length; col += parity) {
+			for (col = TaylorsAI.getLastGuessNumber(); col < guesses.length; col += parity) {
 				if (guesses[row][col] == '.') {
 					colCount++;
 					if (colCount > parity) {
 
 						a = (char) ((int) 'A' + row);
-						return guess = a + Integer.toString(col + 1);
+						 guess = a + Integer.toString(col + 1);
+						 TaylorsAI.lastGuess(guess);
+							return guess;
 					}
 				}
 			}
@@ -54,7 +75,9 @@ public class TaylorsAI {
 
 		a = (char) ((int) 'A' + row);
 
-		return guess = a + Integer.toString(col + 1);
+		guess = a + Integer.toString(col + 1);
+		TaylorsAI.lastGuess(guess);
+		return guess;
 	}
 
 	/*
