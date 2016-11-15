@@ -1,7 +1,13 @@
 import java.util.Arrays;
 public class BattleShipTools{
     public static final int DIMENSIONS = 10;
-
+    private static int moves;
+    public static void addMoves(){
+    	moves++;
+    }
+    public static int getMoves(){
+    	return moves;
+    }
     private static void shuffleArray(int[] array)
     {
         int index, temp;

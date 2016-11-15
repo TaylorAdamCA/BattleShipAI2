@@ -3,7 +3,11 @@ public class RunGame{
     public static void main(String[] args){
         final int DIMENSIONS = 10;
         int average = 0;
+<<<<<<< HEAD
         int games = 100000;
+=======
+        int games = 10000;
+>>>>>>> a0828ed9e594b1b143afbd172f63547c9345a06d
         for(int cases = 0; cases < games ; cases++){
         char[][] s1Guesses = new char[DIMENSIONS][DIMENSIONS];
         String[] history = new String[DIMENSIONS * DIMENSIONS];
