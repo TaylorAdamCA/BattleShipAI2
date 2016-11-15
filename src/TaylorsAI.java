@@ -31,6 +31,67 @@ public class TaylorsAI {
 			}
 
 		}
+		
+		if(guesses[2][2] == '.')
+			return "C3";
+		if(guesses[3][3] == '.')
+			return "D4";
+		if(guesses[4][4] == '.')
+			return "E5";
+		if(guesses[5][5] == '.')
+			return "F6";
+		if(guesses[6][6] == '.')
+			return "G7";
+		if(guesses[7][7] == '.')
+			return "H8";
+	
+		
+	
+		if(guesses[1][5] == '.')
+			return "B6";
+		if(guesses[2][6] == '.')
+			return "C7";
+		if(guesses[3][7] == '.')
+			return "D8";
+		if(guesses[4][8] == '.')
+			return "E9";
+
+		
+		if(guesses[5][1] == '.')
+			return "F2";
+		if(guesses[6][2] == '.')
+			return "G3";
+		if(guesses[7][3] == '.')
+			return "H4";
+		if(guesses[8][4] == '.')
+			return "I5";
+	
+		if(guesses[3][4] == '.')
+			return "D5";
+		if(guesses[3][5] == '.')
+			return "D6";
+		if(guesses[4][5] == '.')
+			return "E6";
+		if(guesses[5][4] == '.')
+			return "F5";
+		if(guesses[5][3] == '.')
+			return "F4";
+		
+		if(guesses[8][8] == '.')
+			return "I9";
+		if(guesses[9][9] == '.')
+			return "J10";
+		if(guesses[0][0] == '.')
+			return "A1";
+		if(guesses[1][1] == '.')
+			return "B2";
+		if(guesses[2][5] == '.')
+			return "C6";
+		if(guesses[2][4] == '.')
+			return "C5";
+
+			
+		
 		int parity = size(guesses);
 		int colCount = 0;
 		// figure out how to save last guess
@@ -47,14 +108,32 @@ public class TaylorsAI {
 				}
 			}
 		}
-		do {
+	
+		
+		
+		if(BattleShipTools.getMoves() < 20){
+			do{
+		
 			row = (int) (Math.random() * 10);
-			col = (int) (Math.random() * 10);
+			col = row;
+			//int randomNum = startOfRange+rand.nextInt((endOfRange-startOfRange)/2) *2;
 		} while (guesses[row][col] != '.');
 
 		a = (char) ((int) 'A' + row);
 
 		return guess = a + Integer.toString(col + 1);
+	}else{
+		do{
+			row = (int) (Math.random() * 10);
+			col = (int) (Math.random() * 10);
+			//int randomNum = startOfRange+rand.nextInt((endOfRange-startOfRange)/2) *2;
+		} while (guesses[row][col] != '.');
+
+		a = (char) ((int) 'A' + row);
+
+		return guess = a + Integer.toString(col + 1);
+	}
+		
 	}
 
 	/*
@@ -107,6 +186,10 @@ public class TaylorsAI {
 				}
 		}
 		return false;
+	}
+	public static int moves(int a){
+		int moves = a;
+		return moves;
 	}
 
 }
