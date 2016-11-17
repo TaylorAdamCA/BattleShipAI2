@@ -3,11 +3,11 @@ public class RunGame{
     public static void main(String[] args){
         final int DIMENSIONS = 10;
         int average = 0;
-<<<<<<< HEAD
-        int games = 100000;
-=======
+
+    
+
         int games = 10000;
->>>>>>> a0828ed9e594b1b143afbd172f63547c9345a06d
+
         for(int cases = 0; cases < games ; cases++){
         char[][] s1Guesses = new char[DIMENSIONS][DIMENSIONS];
         String[] history = new String[DIMENSIONS * DIMENSIONS];
@@ -48,15 +48,15 @@ public class RunGame{
         average += moves;
         for(int i = 0; i < history.length; i++){
             if(i % 10 == 0)
-               // System.out.println();
+                System.out.println();
             if(history[i] != null){
-               // System.out.print(history[i] + ", ");
+               System.out.print(history[i] + ", ");
             }
             
         }
 
         System.out.println();
-        //BattleShipTools.printBoard(s1Guesses);
+       //BattleShipTools.printBoard(s1Guesses);
     }System.out.println("youre average is " + average/games);
     }
  

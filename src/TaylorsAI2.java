@@ -1,11 +1,9 @@
-//Start by isBuring - return true
-public class TaylorsAI {
 
-	private static String lastGuess = "A0";
+public class TaylorsAI2 {
 	public static int[][] chance = new int[10][10];
 
 	public static String aIGuess(char[][] guesses) {
-		int row, col, parity;
+		int row, col;
 		String guess;
 		char a = 0;
 		if (isLit(guesses) == true) {
@@ -83,15 +81,7 @@ public class TaylorsAI {
 		if (guesses[8][3] == '.')
 			return "I4";
 
-		parity = size(guesses);
-		if (parity > 4)
-			return check5(guesses);
-		else if (parity > 3)
-			return check4(guesses);
-		else if (parity > 2)
-			return check3(guesses);
-		else
-			return check2(guesses);
+		return check2(guesses);
 
 	}
 
@@ -115,64 +105,6 @@ public class TaylorsAI {
 	 * return "A10"; if(guesses[4][3] == '.') return "E4";
 	 */
 
-	/*
-	 * int parity = size(guesses); int colCount = 0; for (row =
-	 * TaylorsAI.getLastGuessLetter(); row < guesses.length; row += parity) {
-	 * for (col = TaylorsAI.getLastGuessNumber(); col < guesses.length; col +=
-	 * parity) { if (guesses[row][col] == '.') { colCount++; if (colCount >
-	 * parity) {
-	 * 
-	 * a = (char) ((int) 'A' + row); guess = a + Integer.toString(col + 1);
-	 * TaylorsAI.lastGuess(guess); return guess; } } } } }
-	 */
-
-	/*
-	 * if (BattleShipTools.getMoves() < 20) { do {
-	 * 
-	 * row = (int) (Math.random() * 10); col = row; // int randomNum = //
-	 * startOfRange+rand.nextInt((endOfRange-startOfRange)/2) *2; } while
-	 * (guesses[row][col] != '.');
-	 * 
-	 * a = (char) ((int) 'A' + row);
-	 * 
-	 * return guess = a + Integer.toString(col + 1); } else { do { row = (int)
-	 * (Math.random() * 10); col = (int) (Math.random() * 10); // int randomNum
-	 * = // startOfRange+rand.nextInt((endOfRange-startOfRange)/2) *2; } while
-	 * (guesses[row][col] != '.');
-	 * 
-	 * a = (char) ((int) 'A' + row);
-	 * 
-	 * guess = a + Integer.toString(col + 1); TaylorsAI.lastGuess(guess); return
-	 * guess; }
-	 * 
-	 * }
-	 * 
-	 * 
-	 * public static boolean oneRight(char[][] guess) { int row, col; for (row =
-	 * 0; row < guess.length; row++) { for (col = 0; col < guess.length; col++)
-	 * if (guess[row][col] < 10) { // Check to the right if (guess[row][col + 1]
-	 * == '.') {
-	 * 
-	 * return true; } } } return false; }
-	 * 
-	 * public static boolean oneLeft(char[][] guess) { int row, col; for (row =
-	 * 0; row < guess.length; row++) { for (col = 0; col < guess.length; col++)
-	 * if (guess[row][col] > 0) { // Check to the left if (guess[row][col - 1]
-	 * == '.') { return true; } }
-	 * 
-	 * } return false; } public static boolean oneUp(char[][] guess) { int row,
-	 * col; for (row = 0; row < guess.length; row++) { for (col = 0; col <
-	 * guess.length; col++) if (row < guess.length - 1) { // Check below if
-	 * (guess[row + 1][col] == '.') { return true; } }
-	 * 
-	 * } return false; } public static boolean oneDown(char[][] guess) { int
-	 * row, col; for (row = 0; row < guess.length; row++) { for (col = 0; col <
-	 * guess.length; col++) if (guess[row][col] > 0) { // Check to the left if
-	 * (guess[row][col - 1] == '.') { return true; } }
-	 * 
-	 * } return false; }
-	 */
-
 	public static String check2(char[][] guesses) {
 		int[] max = new int[2];
 		int[][] chance = new int[10][10];
@@ -191,20 +123,6 @@ public class TaylorsAI {
 						chance[row + 1][col]++;
 					}
 				}
-			}
-		}
-		max = findMaxIndex(chance);
-		a = (char) ((int) 'A' + max[0]);
-		return a + Integer.toString(max[1] + 1);
-
-	}
-
-	public static String check3(char[][] guesses) {
-		int[] max = new int[2];
-		int[][] chance = new int[10][10];
-		char a = 0;
-		for (int row = 0; row < 10; row++) {
-			for (int col = 0; col < 10; col++) {
 				if (col < 8) {
 					if (guesses[row][col] == '.' && guesses[row][col + 1] == '.' && guesses[row][col + 2] == '.') {
 						chance[row][col]++;
@@ -219,20 +137,6 @@ public class TaylorsAI {
 						guesses[row + 2][col]++;
 					}
 				}
-			}
-		}
-		max = findMaxIndex(chance);
-		a = (char) ((int) 'A' + max[0]);
-		return a + Integer.toString(max[1] + 1);
-
-	}
-
-	public static String check4(char[][] guesses) {
-		int[] max = new int[2];
-		int[][] chance = new int[10][10];
-		char a = 0;
-		for (int row = 0; row < 10; row++) {
-			for (int col = 0; col < 10; col++) {
 				if (col < 7) {
 					if (guesses[row][col] == '.' && guesses[row][col + 1] == '.' && guesses[row][col + 2] == '.'
 							&& guesses[row][col + 3] == '.') {
@@ -251,20 +155,6 @@ public class TaylorsAI {
 						guesses[row + 3][col]++;
 					}
 				}
-			}
-		}
-		max = findMaxIndex(chance);
-		a = (char) ((int) 'A' + max[0]);
-		return a + Integer.toString(max[1] + 1);
-
-	}
-
-	public static String check5(char[][] guesses) {
-		int[] max = new int[2];
-		int[][] chance = new int[10][10];
-		char a = 0;
-		for (int row = 0; row < 10; row++) {
-			for (int col = 0; col < 10; col++) {
 				if (col < 6) {
 					if (guesses[row][col] == '.' && guesses[row][col + 1] == '.' && guesses[row][col + 2] == '.'
 							&& guesses[row][col + 3] == '.' & guesses[row][col + 4] == '.') {
@@ -287,10 +177,22 @@ public class TaylorsAI {
 				}
 			}
 		}
-		max = findMaxIndex(chance);
-		a = (char) ((int) 'A' + max[0]);
-		return a + Integer.toString(max[1] + 1);
 
+		max = findMaxIndex(chance);
+		if (guesses[max[0]][max[1]] == '.') {
+			a = (char) ((int) 'A' + max[0]);
+			return a + Integer.toString(max[1] + 1);
+		}
+
+
+		else{
+		 int row = (int) (Math.random() * 10);
+		 int col = (int) (Math.random() * 10);
+		  
+		  a = (char) ((int) 'A' + row);
+		  
+		  return a + Integer.toString(col + 1);
+		}
 	}
 
 	public static int[] findMaxIndex(int[][] a) {
@@ -308,34 +210,6 @@ public class TaylorsAI {
 		return arr;
 	}
 
-	public static int size(char[][] search) {
-		int row, col;
-		int pbSunk = 0, dSunk = 0,bSunk = 0;
-		int parity = 2;
-		for (row = 0; row < search.length; row++) {
-			for (col = 0; col < search.length; col++) {
-				if (search[row][col] == 2) {
-					pbSunk++;
-				}
-				if (search[row][col] == 3) {
-						dSunk++;
-				}
-				if(search[row][col] == 4){
-					bSunk++;
-				}
-			}
-		}
-		if(pbSunk < 2)
-			return parity = 2;
-		else if(dSunk < 6)
-			return parity = 3;
-		else if(bSunk < 4)
-			return parity = 4;
-		else if (pbSunk > 2 && dSunk > 6 && bSunk > 4)
-			return parity = 5;
-	return parity;
-	}
-
 	public static boolean isLit(char[][] search) {
 		int row, col;
 		for (row = 0; row < search.length; row++) {
@@ -345,24 +219,6 @@ public class TaylorsAI {
 				}
 		}
 		return false;
-	}
-
-	public static int moves(int a) {
-		int moves = a;
-		return moves;
-	}
-
-	public static void lastGuess(String a) {
-		lastGuess = a;
-	}
-
-	public static int getLastGuessLetter() {
-		int a = (int) lastGuess.charAt(0);
-		return a - 'A';
-	}
-
-	public static int getLastGuessNumber() {
-		return lastGuess.charAt(1);
 	}
 
 }
